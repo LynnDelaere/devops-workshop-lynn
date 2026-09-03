@@ -35,7 +35,7 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q tests
-    deploy-preview:
+  deploy-preview:
     name: deployment-handoff
     needs: verify
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
