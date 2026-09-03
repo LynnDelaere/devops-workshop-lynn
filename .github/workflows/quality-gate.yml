@@ -1,0 +1,21 @@
+name: Quality gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  workshop-policy:
+    name: workshop-policy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Reject the workshop training marker
+        run: bash scripts/check-workshop-policy.sh
