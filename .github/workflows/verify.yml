@@ -35,3 +35,16 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q tests
+    deploy-preview:
+    name: deployment-handoff
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: workshop-preview
+    steps:
+      - name: Record the verified candidate
+        run: |
+          printf 'Verified commit ready for deployment: %s\n' "$GITHUB_SHA"
+          printf '%s\n' 'A real target is deliberately introduced in Lab 8.'
+
