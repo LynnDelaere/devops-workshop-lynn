@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: backend/Dockerfile
     environment:
-      WORKSHOP_TEAM_NAME: Team 01
+      WORKSHOP_TEAM_NAME: Ultra Top Team
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health', timeout=2)"]
       interval: 5s
