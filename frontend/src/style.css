@@ -1,0 +1,188 @@
+:root {
+  --night: #090b1f;
+  --panel: #15143a;
+  --cyan: #00f5ff;
+  --lilac: #bc7cff;
+  --pink: #ff4fd8;
+  --yellow: #ffe66d;
+  --text: #f7f3ff;
+  --muted: #eee7ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2rem);
+  overflow-x: hidden;
+  background:
+    linear-gradient(rgba(0, 245, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.06) 1px, transparent 1px),
+    var(--night);
+  background-size: 28px 28px;
+  color: var(--text);
+  font-family: "Courier New", monospace;
+  line-height: 1.6;
+  transition: background 250ms ease, color 250ms ease;
+}
+
+main,
+body > div,
+body > section {
+  width: min(100%, 680px);
+  padding: clamp(1.5rem, 6vw, 4rem);
+  text-align: center;
+  background: rgba(21, 20, 58, 0.92);
+  border: 2px solid var(--cyan);
+  border-radius: 8px;
+  box-shadow:
+    0 0 12px var(--cyan),
+    0 0 35px rgba(188, 124, 255, 0.45),
+    inset 0 0 30px rgba(188, 124, 255, 0.12);
+  transition: background 250ms ease, border-color 250ms ease;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  color: var(--cyan);
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-shadow: 3px 3px 0 var(--lilac), 0 0 14px var(--cyan);
+}
+
+p {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: clamp(1rem, 3vw, 1.05rem);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  border: 2px solid var(--yellow);
+  border-radius: 4px;
+  padding: 0.85rem 1.15rem;
+  background: var(--lilac);
+  box-shadow: 4px 4px 0 var(--pink), 0 0 15px var(--lilac);
+  color: var(--night);
+  cursor: pointer;
+  font: inherit;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--pink), 0 0 22px var(--cyan);
+}
+
+button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--pink);
+}
+
+/* Clear focus for keyboard users */
+button:focus-visible {
+  outline: 4px solid white;
+  outline-offset: 5px;
+  box-shadow: 0 0 0 8px var(--cyan), 4px 4px 0 var(--pink);
+}
+
+.theme-description {
+  margin: 1.25rem 0 0;
+  color: var(--cyan);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+#message,
+.message,
+[role="status"] {
+  min-height: 1.6em;
+  margin-top: 1.25rem;
+  color: var(--yellow);
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--yellow);
+}
+
+.particle {
+  position: fixed;
+  z-index: 10;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  background: var(--particle-colour);
+  box-shadow: 0 0 10px var(--particle-colour);
+  animation: explode 650ms ease-out forwards;
+}
+
+@keyframes explode {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y))
+    ) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Cozy anime-girl theme */
+body.theme-anime {
+  --night: #35233f;
+  --panel: #5c3a63;
+  --cyan: #ffb7d5;
+  --lilac: #caa5ff;
+  --pink: #ff79b5;
+  --yellow: #ffe0aa;
+  --text: #fff7fb;
+  --muted: #ffeaf3;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 183, 213, 0.25), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(202, 165, 255, 0.25), transparent 30%),
+    var(--night);
+}
+
+body.theme-anime main,
+body.theme-anime body > div,
+body.theme-anime body > section {
+  background: rgba(92, 58, 99, 0.94);
+  border-color: var(--cyan);
+}
+
+body.theme-anime h1 {
+  text-shadow: 3px 3px 0 var(--pink), 0 0 14px var(--cyan);
+}
+
+@media (max-width: 420px) {
+  .button-row {
+    flex-direction: column;
+  }
+
+  .button-row button {
+    width: 100%;
+  }
+
+  h1 {
+    letter-spacing: 0.03em;
+  }
+}
